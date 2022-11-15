@@ -1,0 +1,27 @@
+%Código Matlab
+%Filipe Soares Donato - Medição de luminosidade com LDR
+clc; clear;
+%Pontos obtidos no laboratório
+y = [9.2494, 6.6763, 5.3905, 4.6040, 4.0266, 3.6156, 3.2943,...
+3.0397, 2.8277, 2.6478, 2.4943, 2.3617, 2.2437, 2.1396, 2.0458,...
+1.9670, 1.9658, 1.6579, 1.5556, 1.4680, 1.3922, 1.3248, 1.2649,...
+1.2127, 1.1627, 1.1175, 1.0828, 1.0423, 1.0183, 0.9951];
+
+x = [7.0388, 10.7412, 21.0407, 32.2698, 43.4862, 53.2097, 68.9539,...
+82.4827, 92.8233, 101.2215, 108.4021, 115.0411, 121.7212,...
+128.6227, 136.0243, 143.5155, 163.6458, 188.1400, 211.0578,...
+235.1681, 259.9775, 285.5665, 311.4324, 336.6502, 363.3124,...
+389.7291, 411.6126, 439.0133, 456.2896, 473.7089];
+
+%Encontramos os valores do polinômio característico
+% que representa os pontos com a polyfit e polyval
+p1 = polyfit(x,y,10)
+p2=polyval(p1,x)
+
+%Plotando o grafico dos pontos obtidos e da reta
+figure(1);
+plot(x,y,'o');
+hold on;                        %travar a primeira exibição
+plot(x, p2, 'r--');
+title('Comparativo dos pontos com o modelo obtido');
+grid on; 
