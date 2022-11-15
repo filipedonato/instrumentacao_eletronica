@@ -1,0 +1,40 @@
+%MatLab código
+%Filipe Soares Donato - Medição de inclinação
+clear;
+clc;
+
+%Ler os dados e atribuir as variáveis
+load TensaoY_turma01.txt;
+load TensaoX_turma01.txt;
+
+y = TensaoY_turma01
+x = TensaoX_turma01
+z_graus = [90, 85, 80, 75, 70, 65, 60, 55, 50, 45, 40, 35,...
+    30, 25, 20, 15, 10, 5, 0, -5, -10, -15, -20, -25, -30, -35,...
+    -40, -45, -50, -55, -60, -65, -70, -75, -80, -85, -90];
+z = z_graus*(pi/180);
+%Inseri os valores em graus e depois converti para radianos
+
+
+%Encontramos os valores  do polinômio característico
+% que representa os pontos com a polyfit e polyval
+p1 = polyfit(z, y, 4)       %Grau 4 já dá uma boa aproximação
+p2 = polyfit(-z, x, 4)      %Grau 4 já dá uma boa aproximação
+
+p3 = polyval(p1, y);
+p4 = polyval(p2, x);
+
+%Plotando o grafico dos pontos obtidos e da reta
+figure(1);
+plot(z,x,'o');
+hold on;                        %travar a primeira exibição
+plot(x, p3, 'r--');
+title('Modelo 1');
+grid on;
+
+figure(2)
+plot(z,y,'o');
+hold on;                        %travar a primeira exibição
+plot(x, p4, 'r--');
+title('Modelo 2');
+grid on;
