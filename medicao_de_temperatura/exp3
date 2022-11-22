@@ -1,0 +1,20 @@
+%Filipe Soares Donato - arquivo do MatLab
+%Instrumentação - Exp_3 - Peltier
+clc; clear;
+%coloca os dados em uma planilha no excel ou google docs
+%troca as vírgulas por pontos (fiz no Notepad++) e cria um arquivo
+%de aquecimento e outro de resfriamento com os pontos
+%daí salva em .txt e carregamos ele no MatLab
+load 'aquecimento.txt';
+load 'resfriamento.txt';
+tamanho = length(aquecimento) - 1; %pro plot dar certo, ter o mesmo tamanho
+n = [0 : 1 : tamanho];
+%no meu caso ficou 2065 pontos mas eu sei que é 206.5 segundos
+
+figure(1);
+plot(n, aquecimento, 'r');  %cor vermelha
+hold;                       %travar a exibição
+plot(n, resfriamento, 'c'); %cor ciano
+xlabel('tempo(mS)');
+ylabel('Temperatura(°C)');
+title('Módulo de Peltier');
